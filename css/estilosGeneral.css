@@ -1,0 +1,77 @@
+a{
+    color:unset;
+}
+
+body{
+    background-image: url(../../img/ImgFondo.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-attachment: fixed;
+}
+
+.contenedor{
+    padding: 100px 5px 10px 10px;
+    background-color: rgb(215, 215, 215);
+    width: 65%;
+    margin: auto;
+    border: solid black 3px;
+    border-radius: 0px 0px 12px 12px;
+}
+
+.contenedor li{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: large;
+}
+
+.barraLateralNavegacion{
+    padding-left: 10px;
+    padding-right: 5px;
+    top: 115;
+    left: 0;
+    background-color: wheat;
+    border: solid black 2px;
+    border-radius: 0px 5px 5px 0px;
+    position: fixed;
+    width:15%;
+    min-height: 300px;
+    max-height: max-content;
+}
+
+.barraLateralNavegacion ul{
+    padding-left: 10px;
+}
+
+.barraLateralNavegacion li{
+    list-style: none;
+    padding-top: 5px;
+}
+
+.barraLateralNavegacion li li{
+    list-style:disc;
+}
+
+table{
+    width: 80%;
+    margin: auto;
+    border: solid 2px black;
+    padding: 5px;
+    border-radius:5px ;
+    background-color: white;
+    font-size: large;
+}
+
+th{
+    border: solid;
+    border-color: black;
+    border-radius: 2px;
+    border-width: 2px;
+}
+
+th:hover{
+    cursor: pointer;
+    border-color: blue;
+}
+
+
+

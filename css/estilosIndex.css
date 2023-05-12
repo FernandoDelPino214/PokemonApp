@@ -1,0 +1,52 @@
+a{
+    color:unset;
+}
+
+.contenedor{
+    padding-top: 95px;
+    background-color: rgb(181, 181, 181);
+    width: 80%;
+    margin: auto;
+    border: solid black 5px;
+    border-radius: 0px 0px 12px 12px;
+}
+
+.contenedor li{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: large;
+}
+
+
+
+body{
+    background-image: url(../../img/ImgFondo.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-attachment: fixed;
+}
+
+label{
+    background-color: white;
+    border: solid black 1px;
+    border-radius: 2px;
+}
+
+.contenedor a:hover{
+    cursor: pointer;
+    animation:animacionEnlace linear 0.2s both;
+}
+
+@keyframes animacionEnlace {
+    0%{
+        color: black;
+        font-size: large;
+        text-shadow: none;
+    }
+
+    100%{
+        color: rgb(115, 219, 253);
+        font-size: larger;
+        text-shadow:1cm black;
+    }
+}
