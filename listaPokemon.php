@@ -13,7 +13,13 @@
         set_exception_handler('exception_handler');
 
         try {
-            $mysqli = mysqli_connect("172.17.0.2", "root", "", "pokemondb");
+            $db = parse_ini_file("../archivoConexion/config.ini");
+            $user = $db['user'];
+            $pass = $db['pass'];
+            $name = $db['name'];
+            $host = $db['host'];
+
+            $mysqli = mysqli_connect("$host", "$user", "$pass", "$name");
         } catch (Exception $th) {
             throw $th;
         }
