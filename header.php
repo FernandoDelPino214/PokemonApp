@@ -69,13 +69,13 @@
                 <img src="../img/pokemonLogo.png" class="headerLogo">
             <div>
             
-            <a>
+            <a href="listaMovimientos.php">
                 <div>
                     <p>Movimientos</p>
                 </div>
             </a>
             
-            <a>
+            <a href="listaEstadisticas.php">
                 <div>
                     <p>Estadísticas de Combate</p>
                 </div>

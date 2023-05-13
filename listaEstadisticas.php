@@ -39,7 +39,8 @@
         else{
             echo "<script>console.log('Conexion a BBDD exitosa');</script>";
 
-            $sql = "SELECT * FROM pokemon";
+            $sql = "SELECT p.numero_pokedex , p.nombre , eb.ps , eb.ataque ,eb.defensa , eb.especial , eb.velocidad 
+                FROM pokemon p INNER JOIN estadisticas_base eb ON p.numero_pokedex = eb.numero_pokedex ";
             if($orden){
                 $sql = $sql . " ORDER BY $orden " . ($asc ? "ASC" : "DESC");
             }
@@ -54,7 +55,7 @@
 
         <script>
             function recargar(orden, asc){
-                window.location.replace("listaPokemon.php?orden=" + orden + "&asc=" + asc);
+                window.location.replace("listaEstadisticas.php?orden=" + orden + "&asc=" + asc);
             }
         </script>
 
@@ -85,13 +86,13 @@
                     // codigo para hacer cabezeras clickables para la ordenación por columnas de manera procedural a partir de los arrays
 
                     // en este array se pone el nombre de las columnas en la BBDD
-                    $columnas = array("numero_pokedex","nombre","peso","altura");
+                    $columnas = array("numero_pokedex","nombre","ps","ataque","defensa","especial","velocidad");
 
                     // en este array se pone el nombre que aparecerá en la página
-                    $nomColumnas = array("Nº Pokedex", "Pokemon", "Peso", "Altura");
+                    $nomColumnas = array("Nº Pokedex", "Pokemon", "PS", "Ataque","Defensa","Especial","Velocidad");
 
                     // en este array se pone los valores en porcentaje que se usaran en el width
-                    $widthColumnas = array(20, 40, 15, 15);
+                    $widthColumnas = array(15, 15, 12, 12, 12, 12, 12);
 
                     // este index es necesario para que todos los arrays estén coordinados
                     $index = 0;
@@ -124,12 +125,6 @@
                 <?php
                 // codigo para el resto de la tabla
                 while($fila = mysqli_fetch_assoc($resultado)){
-                    /*
-                    $numPokedex = $fila["numero_pokedex"];
-                    $pokemon = $fila["nombre"];
-                    $peso = $fila["peso"];
-                    $altura = $fila["altura"];
-                    */
                     echo "<tr height='25px'>";
                     foreach ($fila as $campo) {
                         echo "<td>$campo</td>";

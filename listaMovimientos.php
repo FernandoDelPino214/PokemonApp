@@ -39,7 +39,8 @@
         else{
             echo "<script>console.log('Conexion a BBDD exitosa');</script>";
 
-            $sql = "SELECT * FROM pokemon";
+            $sql = "SELECT m.nombre , m.potencia , m.precision_mov , m.pp , t.nombre AS tipo, m.prioridad 
+            FROM movimiento AS m INNER JOIN tipo AS t ON m.id_tipo = t.id_tipo";
             if($orden){
                 $sql = $sql . " ORDER BY $orden " . ($asc ? "ASC" : "DESC");
             }
@@ -54,7 +55,7 @@
 
         <script>
             function recargar(orden, asc){
-                window.location.replace("listaPokemon.php?orden=" + orden + "&asc=" + asc);
+                window.location.replace("listaMovimientos.php?orden=" + orden + "&asc=" + asc);
             }
         </script>
 
@@ -85,13 +86,13 @@
                     // codigo para hacer cabezeras clickables para la ordenación por columnas de manera procedural a partir de los arrays
 
                     // en este array se pone el nombre de las columnas en la BBDD
-                    $columnas = array("numero_pokedex","nombre","peso","altura");
+                    $columnas = array("m.nombre","m.potencia","m.precision_mov", "m.pp", "tipo", "m.prioridad");
 
                     // en este array se pone el nombre que aparecerá en la página
-                    $nomColumnas = array("Nº Pokedex", "Pokemon", "Peso", "Altura");
+                    $nomColumnas = array("Movimiento", "Potencia", "Precisión (%)", "PP", "Tipo", "Prioridad");
 
                     // en este array se pone los valores en porcentaje que se usaran en el width
-                    $widthColumnas = array(20, 40, 15, 15);
+                    $widthColumnas = array(20, 15, 17, 10, 15, 13);
 
                     // este index es necesario para que todos los arrays estén coordinados
                     $index = 0;

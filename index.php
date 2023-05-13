@@ -15,11 +15,11 @@
                     </a>
                 </li>
                 <li>
-                    <a>
+                    <a href="listaEstadisticas.php">
                         Ver Estadísticas
                     </a>
                 </li>
-                <li>
+                <li href="listaMovimietnos.php">
                     <a>
                         Ver Movimientos
                     </a>
