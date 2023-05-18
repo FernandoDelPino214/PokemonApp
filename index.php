@@ -19,8 +19,8 @@
                         Ver Estadísticas
                     </a>
                 </li>
-                <li href="listaMovimietnos.php">
-                    <a>
+                <li>
+                    <a href="listaMovimietnos.php">
                         Ver Movimientos
                     </a>
                 </li>
