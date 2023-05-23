@@ -23,7 +23,41 @@
         } catch (Exception $th) {
             throw $th;
         }
+
+
+        // arrays usados para hacer cabezeras clickables para la ordenación por columnas de manera procedural a partir de los arrays
+
+        // en este array se pone el nombre de las columnas en la BBDD
+        $columnas = array("numero_pokedex","nombre","peso","altura");
+
+        // en este array se pone el nombre que aparecerá en la página
+        $nomColumnas = array("Nº Pokedex", "Pokemon", "Peso", "Altura");
+
+        // en este array se pone los valores en porcentaje que se usaran en el width
+        $widthColumnas = array(20, 40, 15, 15);
+
+        // array usado para elegir que tipo de filtrado usará
+        $tipoFiltrado = array("numero", "texto", "numero", "numero");
+
+
         
+        if($_GET['filtro']){
+            $filtro = $_GET['filtro'];
+            for($i = 0; $i < count($tipoFiltrado); $i++){
+                if($columnas[$i] == $_GET['filtro']){
+                    $tipoFiltroActual = $tipoFiltrado[$i];
+                    echo "<script>console.log('$tipoFiltroActual')</script>";
+                }
+            }
+
+            if($tipoFiltroActual == "numero"){
+                $max = $_GET['max'];
+                $min = $_GET['min'];
+            }
+            else{
+                $cadena = $_GET['cadena'];
+            }
+        }
 
         if($_GET['orden']){
             $orden = $_GET['orden'];
@@ -40,9 +74,25 @@
             echo "<script>console.log('Conexion a BBDD exitosa');</script>";
 
             $sql = "SELECT * FROM pokemon";
+
+            if($tipoFiltroActual){
+                if($tipoFiltroActual == "numero"){
+                    if(!$max){
+                        $max = 9999999;
+                    }
+                    if(!$min){
+                        $min = 0;
+                    }
+
+                    $sql = $sql . " WHERE $filtro BETWEEN $min AND $max";
+                }
+            }
+
             if($orden){
                 $sql = $sql . " ORDER BY $orden " . ($asc ? "ASC" : "DESC");
             }
+
+            echo "<script>console.log('$sql');</script>";
 
             $resultado = mysqli_query($mysqli, $sql);
             
@@ -53,8 +103,12 @@
         ?>
 
         <script>
-            function recargar(orden, asc){
-                window.location.replace("listaPokemon.php?orden=" + orden + "&asc=" + asc);
+            function ordenar(orden, asc){
+                window.location.replace(window.location.href.split('?')[0] + "?orden=" + orden + "&asc=" + asc);
+            }
+
+            function filtrar(filtro, max, min, cadena){
+                window.location.replace(window.location.href.split('?')[0] + "?filtro=" + filtro + "&max=" + max + "&min=" + min + "&cadena=" + cadena);
             }
         </script>
 
@@ -71,34 +125,51 @@
                 <li>
                     <ul>
                         <li><a>Ver tipos</a></li>
-                        <li><a>Ver evoluciones</a></li>
+                        <li><a href="listaPokemonEvoluciones.php">Ver evoluciones</a></li>
                     </ul>
                 </li>
                 <li></li>
                 <li><a href='index.php'>Inicio</a></li>
             </ul>
         </nav>
+
+        <nav class="barraLateralFiltros">
+            <select name="slctFiltro" id="slctFiltro">
+                <option disabled selected>Elige un campo: </option>
+                <?php
+                    for($i = 0; $i < count($columnas); $i++){
+                        echo "<option value='$columnas[$i]'>$nomColumnas[$i]</option>";
+                    }
+                ?>
+            </select>
+            <br>
+            <h4>Filtros numéricos</h4>
+            <label for="inptMax">Valor máximo: </label>
+            <input type="number" name="inptMax" id="inptMax" step="0.1">
+            <br>
+            <label for="inptMin">Valor mínimo: </label>
+            <input type="number" name="inptMin" id="inptMin" step="0.1">
+            <br><hr>
+            <h4>Filtro de texto</h4>
+            <label for="inptCadena">Contiene: </label>
+            <input type="text" name="inptCadena" id="inptCadena" maxlenght="25">
+            <br><hr>
+            <button onclick="filtrar(slctFiltro.value, inptMax.value, inptMin.value, inptCadena.value)">Filtrar</button>
+            <br><br>
+
+        </nav>
+
         <div class="contenedor">
             <table>
                 <tr>
                     <?php
-                    // codigo para hacer cabezeras clickables para la ordenación por columnas de manera procedural a partir de los arrays
-
-                    // en este array se pone el nombre de las columnas en la BBDD
-                    $columnas = array("numero_pokedex","nombre","peso","altura");
-
-                    // en este array se pone el nombre que aparecerá en la página
-                    $nomColumnas = array("Nº Pokedex", "Pokemon", "Peso", "Altura");
-
-                    // en este array se pone los valores en porcentaje que se usaran en el width
-                    $widthColumnas = array(20, 40, 15, 15);
 
                     // este index es necesario para que todos los arrays estén coordinados
                     $index = 0;
 
                     foreach($columnas as $col){
                         echo "<th width='$widthColumnas[$index]%' name='$col' id='$col'
-                        onclick='recargar(\"$col\", \"" . ($asc && $orden == $col ? "false" : "true") . "\")'>";
+                        onclick='ordenar(\"$col\", \"" . ($asc && $orden == $col ? "false" : "true") . "\")'>";
                         /*                                                                      ^
                         //                                                                      |
                         //                                                                      |
