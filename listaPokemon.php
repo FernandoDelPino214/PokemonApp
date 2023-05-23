@@ -125,7 +125,7 @@
                 <li>
                     <ul>
                         <li><a>Ver tipos</a></li>
-                        <li><a>Ver evoluciones</a></li>
+                        <li><a href="listaPokemonEvoluciones.php">Ver evoluciones</a></li>
                     </ul>
                 </li>
                 <li></li>

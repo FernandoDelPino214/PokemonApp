@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="listaMovimietnos.php">
+                    <a href="listaMovimientos.php">
                         Ver Movimientos
                     </a>
                 </li>

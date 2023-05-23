@@ -33,7 +33,7 @@
         $nomColumnas = array("Id Movimiento","Movimiento","Potencia", "Precision (%)", "PP", "Tipo", "Prioridad");
 
         // en este array se pone los valores en porcentaje que se usaran en el width
-        $widthColumnas = array(15, 20, 12, 12, 10, 10, 10);
+        $widthColumnas = array(15, 18, 12, 15, 10, 10, 10);
 
         // array usado para elegir que tipo de filtrado usará
         $tipoFiltrado = array("numero", "texto", "numero", "numero", "numero", "texto", "numero");
