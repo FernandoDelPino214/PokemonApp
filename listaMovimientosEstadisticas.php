@@ -27,7 +27,7 @@
         // codigo para hacer cabezeras clickables para la ordenación por columnas de manera procedural a partir de los arrays
 
         // en este array se pone el nombre de las columnas en la BBDD
-        $columnas = array("id_movimiento","nombre","potencia", "precision_mov", "pp", "tipo", "prioridad");
+        $columnas = array("id_movimiento","nombreMovimiento","potencia", "precision_mov", "pp", "tipo", "prioridad");
 
         // en este array se pone el nombre que aparecerá en la página
         $nomColumnas = array("Id Movimiento","Movimiento","Potencia", "Precision (%)", "PP", "Tipo", "Prioridad");
@@ -70,7 +70,7 @@
         else{
             echo "<script>console.log('Conexion a BBDD exitosa');</script>";
 
-            $sql = "SELECT m.id_movimiento AS id_movimiento, m.nombre AS nombre, m.potencia AS potencia, m.precision_mov AS precision_mov,
+            $sql = "SELECT m.id_movimiento AS id_movimiento, m.nombre AS nombreMovimiento, m.potencia AS potencia, m.precision_mov AS precision_mov,
             m.pp AS pp, t.nombre AS tipo, m.prioridad AS prioridad
             FROM movimiento AS m INNER JOIN tipo AS t ON m.id_tipo = t.id_tipo";
 
@@ -83,7 +83,13 @@
                         $min = 0;
                     }
 
-                    $sql = $sql . " WHERE $filtro BETWEEN $min AND $max";
+                    $sql = $sql . " HAVING $filtro BETWEEN $min AND $max";
+                }
+                else
+                {
+                    if($tipoFiltroActual == "texto" && $cadena != null && $cadena != ""){
+                        $sql = $sql . " HAVING MATCH($filtro) AGAINST ('$cadena' IN BOOLEAN MODE)";
+                    }
                 }
             }
 
