@@ -1,0 +1,101 @@
+body{
+    background-color: black;
+    background-image: url(../../img/fondoInspeccion.png);
+    background-repeat:repeat;
+    background-size:800px;
+    background-position:center;
+    background-attachment: fixed;
+}
+
+.contenedor{
+    width: 92%;
+    margin: auto;
+    margin-top: 150px;
+    border: solid 4px black ;
+    border-radius:12px;
+    min-height: 500px;
+    background-color: rgba(150, 150, 150, 0.66);
+}
+
+.tarjetaPrincipal{
+    width: 50%;
+    float: left;
+    margin-left: 3%;
+    margin-top: 25px;
+    border: dashed 2px black;
+    border-radius:8px ;
+    min-height: 200px;
+    background-color: rgba(140, 230, 255, 0.8);
+}
+
+.tarjetaPrincipal h1, h2{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding-left: 6%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.tarjetaEstadisticas{
+    width: 25%;
+    float: right;
+    margin-right: 8%;
+    margin-top: 25px;
+    border: dashed 2px black;
+    border-radius:8px ;
+    min-height: 100px;
+    background-color: rgba(255, 226, 9, 0.75);
+}
+
+.tarjetaEstadisticas>*{
+    margin-left: 25px;
+}
+
+.tarjetaEstadisticas>h2{
+    margin-left: 15px;
+}
+
+.estadistica{
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.estadistica h3{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.enLinea{
+    margin: auto;
+    width:fit-content;
+}
+
+.burbuja{
+    float:left;
+    margin: auto;
+    margin:6px 10px 3px 10px;
+    border: solid 2px gray;
+    border-radius: 15px;
+    padding: 3px 15px 3px 15px;
+    background-color: rgba(241, 241, 241, 0.745);
+    min-width: 75px;
+}
+
+.tarjetaEvoluciones{
+    margin-left:3%;
+    margin-top: 10px;
+    float: left;
+    width: 50%;
+    border: solid 2px black;
+    border-radius: 10px;
+    min-height: 100px;
+    background-color: rgba(34, 74, 255, 0.33);
+}
+
+.tarjetaEvoluciones h4{
+    width: 45%;
+    float: left;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
