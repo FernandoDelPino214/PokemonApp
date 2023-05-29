@@ -110,6 +110,10 @@
             function filtrar(filtro, max, min, cadena){
                 window.location.replace(window.location.href.split('?')[0] + "?filtro=" + filtro + "&max=" + max + "&min=" + min + "&cadena=" + cadena);
             }
+
+            function inspeccionarPokemon(numPokedex){
+                window.location.href = "inspeccionarPokemon.php?numPokedex=" + numPokedex;
+            }
         </script>
 
     </head>
@@ -124,8 +128,8 @@
                 <li><a href='listaPokemon.php'>Pokemon</a></li>
                 <li>
                     <ul>
-                        <li><a>Ver tipos</a></li>
                         <li><a href="listaPokemonEvoluciones.php">Ver evoluciones</a></li>
+                        <li><a href="formularioInsertarPokemon.php">Crear Pokemon</a></li>
                     </ul>
                 </li>
                 <li></li>
@@ -195,13 +199,8 @@
                 <?php
                 // codigo para el resto de la tabla
                 while($fila = mysqli_fetch_assoc($resultado)){
-                    /*
                     $numPokedex = $fila["numero_pokedex"];
-                    $pokemon = $fila["nombre"];
-                    $peso = $fila["peso"];
-                    $altura = $fila["altura"];
-                    */
-                    echo "<tr height='25px'>";
+                    echo "<tr height='25px' onclick='inspeccionarPokemon($numPokedex)'>";
                     foreach ($fila as $campo) {
                         echo "<td>$campo</td>";
                     }

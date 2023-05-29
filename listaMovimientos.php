@@ -126,7 +126,6 @@
                 <li>
                     <ul>
                         <li><a href="listaMovimientosEstadisticas.php">Ver estadísticas</a></li>
-                        <li><a>Ver evoluciones</a></li>
                     </ul>
                 </li>
                 <li></li>

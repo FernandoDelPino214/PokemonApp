@@ -66,6 +66,14 @@ table{
     font-size: large;
 }
 
+table tr:hover{
+    background-color: lightgray;
+}
+
+table th:hover{
+    background-color: white;
+}
+
 th{
     border: solid;
     border-color: black;
