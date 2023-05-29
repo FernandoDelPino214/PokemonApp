@@ -84,13 +84,7 @@
                         $min = 0;
                     }
 
-                    $sql = $sql . " HAVING $filtro BETWEEN $min AND $max";
-                }
-                else
-                {
-                    if($tipoFiltroActual == "texto" && $cadena != null && $cadena){
-                        $sql = $sql . " HAVING MATCH($filtro) AGAINST ('$cadena' IN BOOLEAN MODE)";
-                    }
+                    $sql = $sql . " WHERE $filtro BETWEEN $min AND $max";
                 }
             }
 
@@ -157,7 +151,7 @@
             <input type="number" name="inptMin" id="inptMin" step="0.1">
             <br><hr>
             <h4>Filtro de texto</h4>
-            <label for="inptCadena">Nombre pokemon: </label>
+            <label for="inptCadena">Contiene: </label>
             <input type="text" name="inptCadena" id="inptCadena" maxlenght="25">
             <br><hr>
             <button onclick="filtrar(slctFiltro.value, inptMax.value, inptMin.value, inptCadena.value)">Filtrar</button>

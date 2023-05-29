@@ -85,13 +85,7 @@
                         $min = 0;
                     }
 
-                    $sql = $sql . " HAVING $filtro BETWEEN $min AND $max";
-                }
-                else
-                {
-                    if($tipoFiltroActual == "texto" && $cadena != null && $cadena){
-                        $sql = $sql . " HAVING MATCH($filtro) AGAINST ('$cadena' IN BOOLEAN MODE)";
-                    }
+                    $sql = $sql . " WHERE $filtro BETWEEN $min AND $max";
                 }
             }
 
