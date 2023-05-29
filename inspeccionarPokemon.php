@@ -28,8 +28,21 @@
                 WHERE p.numero_pokedex = eb.numero_pokedex 
                 AND p.numero_pokedex = $numPokedex";
 
+                $sqlPreevolucion = "SELECT p.numero_pokedex AS numPokedexPre, p.nombre AS nombrePre
+                FROM pokemon p 
+                WHERE p.numero_pokedex = preevolucionPokemon($numPokedex)";
+
+                $sqlEvolucion = "SELECT p.numero_pokedex AS numPokedexEvo, p.nombre AS nombreEvo
+                FROM pokemon p 
+                WHERE p.numero_pokedex = evolucionPokemon($numPokedex)";
+
                 $datosBasicos = mysqli_query($mysqli, $sql);
                 $datosBasicos = mysqli_fetch_assoc($datosBasicos);
+
+                $datosPreevolucion = mysqli_query($mysqli, $sqlPreevolucion);
+                $datosEvolucion = mysqli_query($mysqli, $sqlEvolucion);
+                $datosPreevolucion = mysqli_fetch_assoc($datosPreevolucion);
+                $datosEvolucion = mysqli_fetch_assoc($datosEvolucion);
             }
 
             if($datosBasicos){
@@ -44,8 +57,15 @@
                 $pokeVelocidad = $datosBasicos['velocidad'];
 
                 echo "<title>$pokeNum. $pokeNombre</title>";
+            }
 
-                echo $pokeAtaque;
+            if($datosPreevolucion){
+                $numPokedexPre = $datosPreevolucion['numPokedexPre'];
+                $nombrePre = $datosPreevolucion['nombrePre'];
+            }
+            if($datosEvolucion){
+                $numPokedexEvo = $datosEvolucion['numPokedexEvo'];
+                $nombreEvo = $datosEvolucion['nombreEvo'];
             }
 
             mysqli_close($mysqli);
@@ -75,7 +95,7 @@
                 <h2>Estadísticas base</h2>
                 <hr width="80%">
                 <div class="estadistica">
-                    <h3>HP: </h3><h3><?php echo $pokePs;?></h3>
+                    <h3>PS: </h3><h3><?php echo $pokePs;?></h3>
                 </div>
                 <div class="estadistica">
                     <h3>Ataque: </h3><h3><?php echo $pokeAtaque;?></h3>
@@ -93,7 +113,14 @@
             <div class="tarjetaEvoluciones">
                 <h4>Preevolución:</h4><h4>Evoluciona a:</h4>
                 <hr width="90%">
-                <h4>NaN</h4><h4>Ivysaur</h4>
+                <h4><?php if($numPokedexPre){echo "$numPokedexPre. $nombrePre";}else{echo "NaN";} ?></h4>
+                <h4><?php if($numPokedexEvo){echo "$numPokedexEvo. $nombreEvo";}else{echo "NaN";} ?></h4>
+            </div>
+            <div class="botones">
+                <?php
+                    echo "<a class='burbuja' href='formularioModificarPokemon.php?numPokedex=$pokeNum'><p>Modificar</p></a>";
+                    echo "<a class='burbuja' href='preguntaEliminarPokemon.php?numPokedex=$pokeNum'><p>¡Eliminar!</p></a>";
+                ?>
             </div>
         </div>
     </body>

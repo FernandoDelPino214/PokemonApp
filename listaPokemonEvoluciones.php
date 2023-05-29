@@ -64,8 +64,8 @@
                 <li><a href='listaPokemon.php'>Pokemon</a></li>
                 <li>
                     <ul>
-                        <li><a>Ver tipos</a></li>
                         <li><a href="listaPokemonEvoluciones.php">Ver evoluciones</a></li>
+                        <li><a href="formularioInsertarPokemon.php">Crear Pokemon</a></li>
                     </ul>
                 </li>
                 <li></li>
